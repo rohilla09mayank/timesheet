@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar";
 
 export default function AppLayout() {
   const user = {
-    name: "John Doe",
+    name: "Mayank Rohilla",
   };
 
   return (
@@ -12,7 +12,7 @@ export default function AppLayout() {
       <AppNav user={user} />
       <div className="flex flex-1 overflow-hidden">
         <Sidebar />
-        <main className="flex-1 px-1 overflow-y-auto">
+        <main className="flex-1 p-5 overflow-y-auto">
           <Outlet />
         </main>
       </div>

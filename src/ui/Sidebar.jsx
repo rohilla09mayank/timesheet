@@ -1,33 +1,70 @@
-import {
-  LuFolderCode,
-  LuLayoutGrid,
-  LuSheet,
-  LuSquareUser,
-} from "react-icons/lu";
 import { NavLink } from "react-router-dom";
 
-function Sidebar() {
+import {
+  LuBell,
+  LuBriefcase,
+  LuCalendarPlus,
+  LuFileText,
+  LuFolderCode,
+  LuUser,
+} from "react-icons/lu";
+
+const navItems = [
+  {
+    to: "/app/dashboard",
+    label: "Dashboard",
+    icon: <LuFolderCode size={20} />,
+  },
+  {
+    to: "/app/fill-timesheet",
+    label: "Fill Timesheet",
+    icon: <LuCalendarPlus size={20} />,
+  },
+  {
+    to: "/app/timesheets",
+    label: "Timesheet History",
+    icon: <LuFileText size={20} />,
+  },
+  {
+    to: "/app/my-projects",
+    label: "My Projects",
+    icon: <LuBriefcase size={20} />,
+  },
+  {
+    to: "/app/notifications",
+    label: "Notifications",
+    icon: <LuBell size={20} />,
+  },
+  {
+    to: "/app/profile",
+    label: "Profile",
+    icon: <LuUser size={20} />,
+  },
+];
+
+export default function Sidebar() {
   return (
-    <aside className="w-64 bg-base-100 shadow p-4 hidden md:block">
-      <nav className="flex flex-col gap-2">
-        <NavLink to="/app/dashboard" className="btn btn-ghost justify-start ">
-          <LuLayoutGrid /> Dashboard
-        </NavLink>
-        <NavLink to="/app/timesheets" className="btn btn-ghost justify-start">
-          <LuSheet /> Timesheets
-        </NavLink>
-        <NavLink
-          to="/app/project-request"
-          className="btn btn-ghost justify-start"
+    <aside className="h-screen w-16 bg-base-200 flex flex-col items-center py-4 gap-4 border-r border-base-300">
+      {navItems.map((item) => (
+        <div
+          key={item.to}
+          className="tooltip tooltip-right font-semibold"
+          data-tip={item.label}
         >
-          <LuFolderCode /> Project Request
-        </NavLink>
-        <NavLink to="/app/profile" className="btn btn-ghost justify-start">
-          <LuSquareUser /> Profile
-        </NavLink>
-      </nav>
+          <NavLink
+            to={item.to}
+            className={({ isActive }) =>
+              `btn btn-ghost btn-circle ${
+                isActive
+                  ? "bg-primary text-primary-content"
+                  : "text-base-content"
+              }`
+            }
+          >
+            {item.icon}
+          </NavLink>
+        </div>
+      ))}
     </aside>
   );
 }
-
-export default Sidebar;
